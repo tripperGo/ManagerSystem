@@ -1,0 +1,29 @@
+.login_content{
+    margin-left: 300px;
+    margin-right: 300px;
+    margin-top: 400px;
+}
+
+.login_content .login_input{
+    margin-top: 20px;
+}
+
+.login_content .login_input .login_text{
+    width:100px;
+}
+
+.login_content .login_submit{
+    margin-top: 20px;
+    text-align: center;
+    left: 100px;
+}
+
+.login_content .login_input .login_value{
+    min-width: 200px;
+}
+
+.login_content .login_btn_verify{
+    position: absolute;
+    left: 53%;
+    top: 515px;
+}

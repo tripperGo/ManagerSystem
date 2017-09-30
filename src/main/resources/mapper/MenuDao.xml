@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.test.dao.MenuDao">
+    <!--查询菜单-->
+    <select id="queryMenuListByPid" parameterType="string" resultType="com.company.test.model.SysMenu">
+        SELECT
+        <include refid="menu_sql"></include>
+        id
+        FROM sys_menu
+        WHERE
+        parentMenuId = #{pid}
+    </select>
+
+    <!--查询完整菜单树列表-->
+    <select id="fullMenuTreeList" resultType="com.company.test.model.SysMenu">
+
+    </select>
+
+    <sql id="menu_sql">
+        menuName,
+        parentMenuId,
+        isOpen,
+        hasButtonAuthority,
+        orderNo,
+    </sql>
+</mapper>

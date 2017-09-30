@@ -1,0 +1,80 @@
+.main_body{
+    position: relative;
+    text-align: center;
+    margin: 10px 200px;
+}
+
+.main_body div{
+    border: 1px solid #e8e8e8;;
+}
+
+.main_body .main_header{
+    height: 15%;
+    width: 100%;
+    min-width: 800px;
+}
+
+.main_body .main_left{
+    position: absolute;
+    height: auto;
+    width: 15%;
+    min-width: 120px;
+}
+
+.main_body .main_right{
+    position: absolute;
+    height: auto;
+    width: 84%;
+    min-width: 300px;
+    right: 0px;
+}
+
+.main_body .main_menus{
+    list-style: none;
+    text-align: center;
+    width: 100%;
+}
+
+.main_body .main_menus li{
+    padding: 20px 15px;
+    background-color: beige;
+    cursor: pointer;
+    margin: 5px;
+    width: 45%;
+}
+
+/*.main_body .main_menus li:hover, .main_body .main_header ul li:hover{
+    background-color: aqua;
+}*/
+
+/*.main_body .main_menus li:active, .main_body .main_header ul li:active{
+    background-color: #40b9ff;
+}*/
+
+.main_body .main_header ul{
+    list-style: none;
+    margin: 50px 0 0px 25%;
+}
+
+.main_body .main_header ul li{
+    float: left;
+    padding: 20px;
+    background-color: beige;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.main_body .main_right .main_table{
+    text-align: center;
+    margin: 10px 100px;
+}
+
+.main_body .main_right .main_table table{
+    border: 1px;
+    width: 100%;
+}
+
+.main_body .main_right .main_table td{
+    width: 50%;
+    text-align: center;
+}
