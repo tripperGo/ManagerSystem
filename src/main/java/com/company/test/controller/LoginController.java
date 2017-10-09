@@ -10,6 +10,7 @@ import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 import com.company.test.model.SysUser;
 import com.company.test.service.SysUserService;
+import com.company.test.utils.StringUtil;
 import com.company.test.utils.VerifyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,16 +49,31 @@ public class LoginController {
     public Map login(String userName, String password, String verify, HttpServletRequest request) throws Exception {
         Map result = new HashMap();
         result.put("result", "failed");
+
+        //校验用户名
+        if(StringUtil.isEmpty(userName)){
+            result.put("data","用户名不能为空");
+            return result;
+        }
+
+        //校验密码
+        if(StringUtil.isEmpty(password)){
+            result.put("data","密码不能为空");
+            return result;
+        }
+
         //校验验证码
-        if(verify == null || "".equals(verify)){
+        /*if(verify == null || "".equals(verify)){
             result.put("data","验证码不能为空");
             return result;
         }
+
         String session_verify = (String) request.getSession().getAttribute("verify");
         if(!verify.equals(session_verify)){
             result.put("data","验证码不正确");
             return result;
-        }
+        }*/
+
         SysUser user = sysUserService.queryUserByUsernamePassword(userName, password);
         if (user == null) {
             result.put("data","用户名或密码错误");
@@ -67,6 +83,31 @@ public class LoginController {
             result.put("result", "success");
             return result;
         }
+    }
+
+    /**
+     * 获取session信息
+     */
+    @ResponseBody
+    @RequestMapping("/getSessionInfo.action")
+    public Map getSessionInfo(String key, HttpServletRequest request){
+        Map result = new HashMap();
+        result.put("result", "failed");
+        Object object = request.getSession().getAttribute(key);
+        if(object != null){
+            result.put("data",object);
+            result.put("result", "success");
+        }
+        return result;
+    }
+
+    /**
+     * 退出登录
+     */
+    @RequestMapping("/logout.action")
+    public String logout(HttpServletRequest request){
+        request.getSession().removeAttribute("user");
+        return "login";
     }
 
     /**

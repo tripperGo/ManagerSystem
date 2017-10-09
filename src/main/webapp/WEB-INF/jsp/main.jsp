@@ -5,7 +5,9 @@
 </head>
 <body>
 <div class="main_body">
-    <div class="main_header"></div>
+    <div class="main_header">
+        <div class="main_user_info"></div>
+    </div>
     <div class="main_left"></div>
     <div class="main_right">
         <div class="main_table"></div>

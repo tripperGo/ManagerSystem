@@ -46,4 +46,12 @@
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="4096"/>
     </bean>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
+            <bean class="com.company.test.interceptor.LoginInterreptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

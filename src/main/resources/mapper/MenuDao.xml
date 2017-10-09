@@ -19,6 +19,7 @@
     <sql id="menu_sql">
         menuName,
         parentMenuId,
+        menuURL,
         isOpen,
         hasButtonAuthority,
         orderNo,

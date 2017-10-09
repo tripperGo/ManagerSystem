@@ -7,7 +7,30 @@ $(document).ready(function () {
     loadLeftMenus(pid);
     //加载用户信息
     loadSysUser();
+    //加载登录信息
+    loadLoginInfo();
 });
+
+//加载登录信息
+function loadLoginInfo() {
+    $.ajax({
+        type: "POST",
+        async: true,
+        url: "/login/getSessionInfo.action",
+        dataType: "json",
+        data: {
+            key: "user"
+        },
+        success: function (result) {
+            if(result.result=="success"){
+                var userName = result.data.userName;
+                $(".main_user_info").append("<a href=\"#\">"+userName+"</a> | <a href='/login/logout.action'>退出</a>");
+            }else{
+                $(".main_user_info").append("<a href='/login/loginPage.action'>登录</a> | <a href=\"#\">注册</a>");
+            }
+        }
+    })
+}
 
 //加载用户信息
 function loadSysUser() {
@@ -23,7 +46,7 @@ function loadSysUser() {
                 var data = result.data;
                 str += "<tr><th>用户名</th><th>密码</th></tr>";
                 for (var i = 0; i < data.length; i++) {
-                    str += "<tr><td>"+data[i].userName+"</td><td>"+data[i].password+"</td></tr>";
+                    str += "<tr><td>" + data[i].userName + "</td><td>" + data[i].password + "</td></tr>";
                 }
                 str += "</table>";
                 $(".main_body .main_right .main_table").html(str);
@@ -36,7 +59,7 @@ function loadSysUser() {
     });
 }
 
-//加载导航栏
+//加载导航栏，头部菜单
 function loadNavigateBar() {
     $.ajax({
         type: "POST",
@@ -55,7 +78,7 @@ function loadNavigateBar() {
                     str += "<li onclick='loadLeftMenus(" + data[i].id + ")'>" + data[i].menuName + "</li>";
                 }
                 str += "</ul>";
-                $(".main_body .main_header").html(str);
+                $(".main_body .main_header").append(str);
                 $(".main_body .main_header ul li").css("background-color", "beige");
                 $(".main_body .main_header ul li:first").css("background-color", "#40b9ff");
             } else {
@@ -65,7 +88,7 @@ function loadNavigateBar() {
     });
 }
 
-//加载菜单列表
+//加载菜单列表，左侧菜单
 function loadLeftMenus(pid) {
     $.ajax({
         async: true,
@@ -81,7 +104,7 @@ function loadLeftMenus(pid) {
                 var str = '<ul class=\"main_menus\">';
                 var data = result.data;
                 for (var i = 0; i < data.length; i++) {
-                    str += "<li>" + data[i].menuName + "</li>";
+                    str += "<li onclick='loadMenuInfo(" + data[i].menuURL + ")'>" + data[i].menuName + "</li>";
                 }
                 str += "</ul>";
                 $(".main_body .main_left").html(str);
@@ -94,4 +117,16 @@ function loadLeftMenus(pid) {
             $(".main_body .main_left ul li:first").css("background-color", "#40b9ff");
         }
     });
+}
+
+function loadMenuInfo(url) {
+    $.ajax({
+        async: true,
+        type: "POST",
+        url: url,
+        dataType: "json",
+        success: function (result) {
+
+        }
+    })
 }
